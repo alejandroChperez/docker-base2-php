@@ -17,6 +17,11 @@ RUN apt-get update && apt-get install -y \
         curl \
         npm build-essential \
         nano
+#instalando laravel
+RUN cd /tmp
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+RUN composer --version
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
 RUN docker-php-ext-install gd zip

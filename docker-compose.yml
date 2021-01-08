@@ -20,8 +20,22 @@ services:
       # #  Volumen para configuracion Default nginx
        - $PWD/nginx:/etc/nginx/conf.d
       ports:
-       - "8080:80" # Puerto para sitio
+       - "8000:80" # Puerto para sitio
       expose:
        - 80 #puerto expuesto por docker
       depends_on:
        - php_fpm7
+  db:
+      image: mysql:5.7
+      restart: always
+      expose:
+       - 3306
+      ports:
+       - 3307:3306
+      environment:
+        MYSQL_DATABASE: exampledb
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: admin
+        MYSQL_ROOT_PASSWORD: admin
+      volumes:
+       - $PWD/mysql:/var/lib/mysql
